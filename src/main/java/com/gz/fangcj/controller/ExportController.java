@@ -11,6 +11,7 @@ import com.gz.fangcj.common.CommonResult;
 import com.gz.fangcj.entity.PmsBrand;
 import com.gz.fangcj.entity.Student;
 import com.gz.fangcj.service.impl.StudentService;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -33,6 +34,7 @@ import java.util.Map;
  * @author Fang chenjiang
  * @create 2021-01-06-16:21
  */
+@Api(tags = "ExportController", value = "数据导出接口")
 @RequestMapping("/export")
 @Controller
 public class ExportController {
