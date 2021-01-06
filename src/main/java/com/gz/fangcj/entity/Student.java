@@ -1,6 +1,7 @@
 package com.gz.fangcj.entity;
 
 import com.alibaba.excel.annotation.ExcelProperty;
+import com.alibaba.excel.enums.CellDataTypeEnum;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
