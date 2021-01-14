@@ -15,24 +15,16 @@ import java.util.List;
 @Component
 public class StudentService {
 
-    public static List<Student>studentList=new ArrayList<>();
+    public static List<Student> studentList = new ArrayList<>();
 
     static {
         initStudentData();
     }
 
 
-    public  static void initStudentData(){
-        studentList.add(new Student(1,"xf","12345"));
-        studentList.add(new Student(2,"xf","12345"));
-        studentList.add(new Student(3,"xf","12345"));
-        studentList.add(new Student(4,"xf","12345"));
-        studentList.add(new Student(5,"xf","12345"));
-        studentList.add(new Student(6,"xf","12345"));
-        studentList.add(new Student(7,"xf","12345"));
-
-
-
-
+    public static void initStudentData() {
+        for (int i = 0; i <7 ; i++) {
+            studentList.add((new Student(1, "xf", "12345")));
+        }
     }
 }
