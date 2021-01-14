@@ -23,8 +23,11 @@ public class StudentService {
 
 
     public static void initStudentData() {
-        for (int i = 0; i <7 ; i++) {
-            studentList.add((new Student(1, "xf", "12345")));
-        }
+        studentList.add(new Student(1,"Kobe","18385525996"));
+        studentList.add(new Student(2,"Lebron","18385525995"));
+        studentList.add(new Student(3,"Green","18385025996"));
+        studentList.add(new Student(4,"Dan","18985525996"));
+        studentList.add(new Student(5,"Chenc","13785525996"));
+
     }
 }
