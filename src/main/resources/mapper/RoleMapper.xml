@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gz.fangcj.mapper.RoleMapper">
+  <resultMap id="BaseResultMap" type="com.gz.fangcj.entity.Role">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="roleName" jdbcType="CHAR" property="rolename" />
+    <result column="description" jdbcType="CHAR" property="description" />
+    <result column="creatorId" jdbcType="BIGINT" property="creatorid" />
+    <result column="status" jdbcType="CHAR" property="status" />
+    <result column="isOrg" jdbcType="INTEGER" property="isorg" />
+    <result column="updateTime" jdbcType="TIMESTAMP" property="updatetime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, createTime, roleName, description, creatorId, status, isOrg, updateTime
+  </sql>
+  <select id="getRoleListPage" resultType="com.gz.fangcj.entity.Role">
+    select <include refid="Base_Column_List"></include>
+    from role where  1=1
+    <if test="pageSize!=null">
+      limit #{begin},#{pageSize}
+    </if>
+  </select>
+  <select id="getRoleListCount" resultType="java.lang.Integer">
+    select  count(*) from role
+  </select>
+
+</mapper>

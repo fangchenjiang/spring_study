@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gz.fangcj.mapper.RoleresourceMapper">
+  <resultMap id="BaseResultMap" type="com.gz.fangcj.entity.Roleresource">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="roleId" jdbcType="BIGINT" property="roleid" />
+    <result column="resourceId" jdbcType="BIGINT" property="resourceid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, roleId, resourceId
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from roleresource
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from roleresource
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.gz.fangcj.entity.Roleresource">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into roleresource (roleId, resourceId)
+    values (#{roleid,jdbcType=BIGINT}, #{resourceid,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gz.fangcj.entity.Roleresource">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into roleresource
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="roleid != null">
+        roleId,
+      </if>
+      <if test="resourceid != null">
+        resourceId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="roleid != null">
+        #{roleid,jdbcType=BIGINT},
+      </if>
+      <if test="resourceid != null">
+        #{resourceid,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gz.fangcj.entity.Roleresource">
+    update roleresource
+    <set>
+      <if test="roleid != null">
+        roleId = #{roleid,jdbcType=BIGINT},
+      </if>
+      <if test="resourceid != null">
+        resourceId = #{resourceid,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gz.fangcj.entity.Roleresource">
+    update roleresource
+    set roleId = #{roleid,jdbcType=BIGINT},
+      resourceId = #{resourceid,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

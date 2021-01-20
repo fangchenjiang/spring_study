@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gz.fangcj.mapper.ResourceMapper">
+  <resultMap id="BaseResultMap" type="com.gz.fangcj.entity.Resource">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="resourceName" jdbcType="CHAR" property="resourcename" />
+    <result column="resourceStatus" jdbcType="INTEGER" property="resourcestatus" />
+    <result column="resourceUrl" jdbcType="CHAR" property="resourceurl" />
+    <result column="resourceDescription" jdbcType="CHAR" property="resourcedescription" />
+    <result column="resourcePid" jdbcType="BIGINT" property="resourcepid" />
+    <result column="resourceLevel" jdbcType="INTEGER" property="resourcelevel" />
+    <result column="resourceType" jdbcType="CHAR" property="resourcetype" />
+    <result column="isOrg" jdbcType="INTEGER" property="isorg" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, resourceName, resourceStatus, resourceUrl, resourceDescription, resourcePid, 
+    resourceLevel, resourceType, isOrg
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from resource
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from resource
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.gz.fangcj.entity.Resource">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into resource (resourceName, resourceStatus, resourceUrl, 
+      resourceDescription, resourcePid, resourceLevel, 
+      resourceType, isOrg)
+    values (#{resourcename,jdbcType=CHAR}, #{resourcestatus,jdbcType=INTEGER}, #{resourceurl,jdbcType=CHAR}, 
+      #{resourcedescription,jdbcType=CHAR}, #{resourcepid,jdbcType=BIGINT}, #{resourcelevel,jdbcType=INTEGER}, 
+      #{resourcetype,jdbcType=CHAR}, #{isorg,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gz.fangcj.entity.Resource">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into resource
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="resourcename != null">
+        resourceName,
+      </if>
+      <if test="resourcestatus != null">
+        resourceStatus,
+      </if>
+      <if test="resourceurl != null">
+        resourceUrl,
+      </if>
+      <if test="resourcedescription != null">
+        resourceDescription,
+      </if>
+      <if test="resourcepid != null">
+        resourcePid,
+      </if>
+      <if test="resourcelevel != null">
+        resourceLevel,
+      </if>
+      <if test="resourcetype != null">
+        resourceType,
+      </if>
+      <if test="isorg != null">
+        isOrg,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="resourcename != null">
+        #{resourcename,jdbcType=CHAR},
+      </if>
+      <if test="resourcestatus != null">
+        #{resourcestatus,jdbcType=INTEGER},
+      </if>
+      <if test="resourceurl != null">
+        #{resourceurl,jdbcType=CHAR},
+      </if>
+      <if test="resourcedescription != null">
+        #{resourcedescription,jdbcType=CHAR},
+      </if>
+      <if test="resourcepid != null">
+        #{resourcepid,jdbcType=BIGINT},
+      </if>
+      <if test="resourcelevel != null">
+        #{resourcelevel,jdbcType=INTEGER},
+      </if>
+      <if test="resourcetype != null">
+        #{resourcetype,jdbcType=CHAR},
+      </if>
+      <if test="isorg != null">
+        #{isorg,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gz.fangcj.entity.Resource">
+    update resource
+    <set>
+      <if test="resourcename != null">
+        resourceName = #{resourcename,jdbcType=CHAR},
+      </if>
+      <if test="resourcestatus != null">
+        resourceStatus = #{resourcestatus,jdbcType=INTEGER},
+      </if>
+      <if test="resourceurl != null">
+        resourceUrl = #{resourceurl,jdbcType=CHAR},
+      </if>
+      <if test="resourcedescription != null">
+        resourceDescription = #{resourcedescription,jdbcType=CHAR},
+      </if>
+      <if test="resourcepid != null">
+        resourcePid = #{resourcepid,jdbcType=BIGINT},
+      </if>
+      <if test="resourcelevel != null">
+        resourceLevel = #{resourcelevel,jdbcType=INTEGER},
+      </if>
+      <if test="resourcetype != null">
+        resourceType = #{resourcetype,jdbcType=CHAR},
+      </if>
+      <if test="isorg != null">
+        isOrg = #{isorg,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gz.fangcj.entity.Resource">
+    update resource
+    set resourceName = #{resourcename,jdbcType=CHAR},
+      resourceStatus = #{resourcestatus,jdbcType=INTEGER},
+      resourceUrl = #{resourceurl,jdbcType=CHAR},
+      resourceDescription = #{resourcedescription,jdbcType=CHAR},
+      resourcePid = #{resourcepid,jdbcType=BIGINT},
+      resourceLevel = #{resourcelevel,jdbcType=INTEGER},
+      resourceType = #{resourcetype,jdbcType=CHAR},
+      isOrg = #{isorg,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
