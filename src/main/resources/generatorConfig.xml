@@ -37,7 +37,8 @@
         <javaClientGenerator type="XMLMAPPER" targetPackage="com.gz.fangcj.mapper"
                              targetProject=".\src\main\java"/>
         <!--生成全部表tableName设为%-->
-        <table tableName="ums_admin_role_relation">
+        <table tableName="roleresource"  enableCountByExample="false" enableDeleteByExample="false"
+        enableSelectByExample="false" enableUpdateByExample="false">
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
         </table>
     </context>
