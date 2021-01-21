@@ -163,7 +163,10 @@
             pr.type = 1
             AND pr.admin_id = #{adminId}
     </select>
-    <update id="updateByExampleSelective" parameterType="map">
+  <select id="getPermissionByType" resultType="com.gz.fangcj.entity.UmsPermission">
+    select * from  ums_permission
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
     update ums_admin_role_relation
     <set>
       <if test="record.id != null">
