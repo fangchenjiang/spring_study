@@ -5,6 +5,7 @@
 
 <generatorConfiguration>
     <properties resource="jdbc.properties"/>
+
     <context id="MySqlContext" targetRuntime="MyBatis3" defaultModelType="flat">
         <property name="beginningDelimiter" value="`"/>
         <property name="endingDelimiter" value="`"/>

@@ -81,10 +81,13 @@ public class UmsAdminServiceImpl implements UmsAdminService {
     public String login(String username, String password) {
         String token = null;
         try {
+            //1.根据用户名密码获取用户信息(UserDetails)
             UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+            //2.验证密码
             if (!passwordEncoder.matches(password, userDetails.getPassword())) {
                 throw new BadCredentialsException("密码不正确");
             }
+            //3.用户密码验证通过，通过UsernamePasswordAuthenticationToken进行认真
             UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
             SecurityContextHolder.getContext().setAuthentication(authentication);
             token = jwtTokenUtil.generateToken(userDetails);
