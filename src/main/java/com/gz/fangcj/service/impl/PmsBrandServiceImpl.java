@@ -1,6 +1,6 @@
 package com.gz.fangcj.service.impl;
 
-import com.github.pagehelper.PageHelper;
+import com.gz.fangcj.dto.PageDTO;
 import com.gz.fangcj.entity.PmsBrand;
 import com.gz.fangcj.entity.PmsBrandExample;
 import com.gz.fangcj.mapper.PmsBrandMapper;
@@ -41,9 +41,12 @@ public class PmsBrandServiceImpl implements PmsBrandService {
     }
 
     @Override
-    public List<PmsBrand> listBrand(int pageNum, int pageSize) {
-        PageHelper.startPage(pageNum, pageSize);
-        return brandMapper.selectByExample(new PmsBrandExample());
+    public PageDTO<List<PmsBrand>> listBrand(int currentPage, int pageSize) {
+
+        Integer begin = PageDTO.countBegin(pageSize, currentPage);
+        List<PmsBrand>brandList=brandMapper.selectBrandPage(begin,pageSize);
+        Long total=brandMapper.totalCount();
+        return new PageDTO(currentPage,total,pageSize,brandList);
     }
 
     @Override

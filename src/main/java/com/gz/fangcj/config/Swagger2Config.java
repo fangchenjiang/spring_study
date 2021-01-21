@@ -48,8 +48,8 @@ public class Swagger2Config {
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("SwaggerUI演示")
-                .description("spring_study")
+                .title("小方的接口文档")
+                .description("Spring学习")
                 .contact(new Contact("fangchenjiang","www.xfnihao.cn","fangchenjiang@37.com"))
                 .version("1.0")
                 .build();

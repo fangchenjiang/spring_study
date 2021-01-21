@@ -33,4 +33,8 @@ public interface PmsBrandMapper {
     int updateByPrimaryKeyWithBLOBs(PmsBrand record);
 
     int updateByPrimaryKey(PmsBrand record);
+
+    List<PmsBrand> selectBrandPage(@Param("begin") Integer begin, @Param("pageSize") int pageSize);
+
+    Long totalCount();
 }

@@ -6,6 +6,7 @@ package com.gz.fangcj.controller;
  */
 
 import com.gz.fangcj.common.CommonResult;
+import com.gz.fangcj.dto.PageDTO;
 import com.gz.fangcj.entity.PmsBrand;
 import com.gz.fangcj.service.PmsBrandService;
 import io.swagger.annotations.Api;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
@@ -31,6 +33,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/brand")
 @Slf4j
+@PreAuthorize("hasAuthority('pms:brand:read')")
 public class PmsBrandController {
     @Autowired
     private PmsBrandService pmsBrandService;
@@ -38,7 +41,7 @@ public class PmsBrandController {
     @ApiOperation("获取所有品牌列表")
     @RequestMapping(value = "listAll", method = RequestMethod.GET)
     @ResponseBody
-    @PreAuthorize("hasAuthority('pms:brand:read')")
+
     public CommonResult<List<PmsBrand>> getBrandList() {
        return CommonResult.success(pmsBrandService.listAllBrand());
     }
@@ -87,13 +90,13 @@ public class PmsBrandController {
         }
     }
 
-//    @RequestMapping(value = "/list", method = RequestMethod.GET)
-//    @ResponseBody
-//    public CommonResult<CommonPage<PmsBrand>> listBrand(@RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum,
-//                                                        @RequestParam(value = "pageSize", defaultValue = "3") Integer pageSize) {
-//        List<PmsBrand> brandList = demoService.listBrand(pageNum, pageSize);
-//        return CommonResultDTO.success(CommonPage.restPage(brandList));
-//    }
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    @ResponseBody
+    public CommonResult listBrand(@RequestParam(value = "currentPage", defaultValue = "1") Integer currentPage,
+                                                     @RequestParam(value = "pageSize", defaultValue = "3") Integer pageSize) {
+        PageDTO<List<PmsBrand>> listPageDTO = pmsBrandService.listBrand(currentPage, pageSize);
+         return CommonResult.success(listPageDTO);
+    }
 
     @ApiOperation("获取指定id的品牌详情")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
