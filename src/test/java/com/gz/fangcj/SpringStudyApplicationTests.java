@@ -6,6 +6,7 @@ import com.gz.fangcj.mapper.UmsAdminRoleRelationMapper;
 import com.gz.fangcj.service.UmsAdminService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,7 +19,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 
-@SpringBootTest(classes =SpringStudyApplication.class)
+@SpringBootTest(classes = SpringStudyApplication.class)
 @Slf4j
 @Transactional
 class SpringStudyApplicationTests {
