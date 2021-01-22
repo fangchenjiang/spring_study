@@ -64,7 +64,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/v2/api-docs/**"
                 )
                 .permitAll()
-                .antMatchers("/admin/login", "/admin/register","/export/*","/role/*","/student/*")// 对登录注册,数据导出要允许匿名访问
+                .antMatchers("/admin/login", "/admin/register","/export/*","/role/*","/student/*","/order/*")// 对登录注册,数据导出要允许匿名访问
                 .permitAll()
                 .antMatchers(HttpMethod.OPTIONS)//跨域请求会先进行一次options请求
                 .permitAll()
@@ -101,6 +101,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public UserDetailsService userDetailsService() {
         //获取登录用户信息
+        // TODO: 2021/1/22 增加Redis实现权限缓存优化
         return username -> {
             UmsAdmin admin = adminService.getAdminByUsername(username);
             if (admin != null) {
