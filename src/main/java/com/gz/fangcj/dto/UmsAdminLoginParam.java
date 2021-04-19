@@ -2,6 +2,7 @@ package com.gz.fangcj.dto;
 
 import io.swagger.annotations.ApiModelProperty;
 import org.hibernate.validator.constraints.NotEmpty;
+
 /**
  * @Author Fang chenjiang
  * @Date 2020/12/31
@@ -13,6 +14,7 @@ public class UmsAdminLoginParam {
     @ApiModelProperty(value = "密码", required = true)
     @NotEmpty(message = "密码不能为空")
     private String password;
+
 
     public String getUsername() {
         return username;
@@ -29,4 +31,5 @@ public class UmsAdminLoginParam {
     public void setPassword(String password) {
         this.password = password;
     }
+
 }

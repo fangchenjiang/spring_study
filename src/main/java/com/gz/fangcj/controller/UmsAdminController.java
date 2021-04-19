@@ -5,7 +5,9 @@ import com.gz.fangcj.dto.UmsAdminLoginParam;
 import com.gz.fangcj.entity.UmsAdmin;
 import com.gz.fangcj.entity.UmsPermission;
 import com.gz.fangcj.service.UmsAdminService;
+import com.gz.fangcj.util.CaptchaUtil;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiModelProperty;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -17,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -69,4 +73,11 @@ public class UmsAdminController {
         List<UmsPermission> permissionList = adminService.getPermissionList(adminId);
         return CommonResult.success(permissionList);
     }
+
+    @RequestMapping(value = "/captcha", method = RequestMethod.GET)
+    @ApiOperation(value = "获取验证码", notes = "获取验证码")
+    public void captcha(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        CaptchaUtil.outputCaptcha(request, response);
+    }
+
 }
